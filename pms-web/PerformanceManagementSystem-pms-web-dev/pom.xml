@@ -172,8 +172,16 @@
 				<version>2.4</version>
 				<configuration>
 					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+					  <failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			 <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
 		</plugins>
 	</build>
 </project>
