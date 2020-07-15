@@ -153,13 +153,13 @@ background-color: white; /* Green */
 					<span class="col-sm-12" style="margin-top:1%;"></span>
 					<span class="col-sm-12" style="margin-top:1%;font-weight:600"></span>
 				</div> -->
-			<div style="width: 157%;">
-				<div class="col-sm-3" style="width: 20%;">
+			<div style="width: 100%;">
+				<div class="col-sm-3" style="width: 32%;">
 					<span class="col-sm-12 selfAssess"
 						style="margin-top: 1%; color: #9A9A9A; font-family:" NunitoSans";">
 						Self Assessment </span> <span id="selfAssessmentED" class="col-sm-12"></span>
 				</div>
-			<div class="col-sm-3" style="width: 20%";>
+			<!-- <div class="col-sm-3" style="width: 20%";>
 					<span class="col-sm-12 apprAssess"
 						style="margin-top: 1%; color: #9A9A9A; font-family:" NunitoSans";">Appraiser
 						Assessment</span> <span id="apprAssessmentED" class="col-sm-12">
@@ -169,19 +169,19 @@ background-color: white; /* Green */
 					<span class="col-sm-12 revAssess"
 						style="margin-top: 1%; color: #9A9A9A; font-family:" NunitoSans";">Reviewer
 						Assessment</span> <span id="revAssessmentED" class="col-sm-12"></span>
-				</div>
+				</div> -->
 		</div>
 			<div class="col-sm-12">
 				<span><br></span>
 			</div>
-		 <div class='col-sm-12' style="margin-left: 1%">
+		<!--  <div class='col-sm-12' style="margin-left: 1%">
 				<span id="ball1" class="col-sm-1 balldot"></span>
 				<hr id="line1" class="col-sm-3">
 				<span id="ball2" class="col-sm-1 balldot"></span>
 				<hr id="line2" class="col-sm-3">
 				<span id="ball3" class="col-sm-1 balldot"></span>
 				<hr id="line3" class="col-sm-3">
-			</div> 
+			</div>  -->
 			<div class="col-sm-12" id="headerOfFullContentDiv"
 				style="padding-top: 1%; padding-bottom: 0.5%;"></div>
 			<div class="col-sm-12" id="fullContentDiv" style="margin-bottom: 5%;"></div>
@@ -1059,20 +1059,22 @@ function showUserDashboard(){
 }
 
 function setCycleDatesOnHeader(){
-	$('#selfAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.selfApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.selfApprEndDate).format(' DD-MMM-YY')+'<span>');
+	$('#selfAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.selfApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.selfApprEndDate).format(' DD-MMM-YYYY')+'<span>');
 	
-	$('#apprAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.mngApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.mngApprEndDate).format(' DD-MMM-YY')+'<span>');
+	$('#apprAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.mngApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.mngApprEndDate).format(' DD-MMM-YYYY')+'<span>');
 	
-	$('#revAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.revApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.revApprEndDate).format(' DD-MMM-YY')+'<span>');
+	$('#revAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.revApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.revApprEndDate).format(' DD-MMM-YYYY')+'<span>');
 }
 
 function checkBackButton(){
 	if($("#actionContainer").css('display')=="block"){
 	$("#crossAndBack").children()[1].remove()
+	$('#CheckMandatoryFieldsForExtendDates').hide();
 	}
 	else{
 	var backButton = $('<button onclick="backToDashboard();" class="btn btn-circle btn-close pull-right" style="margin-left:1%;" data-toggle="tooltip" data-placement="bottom" title="Back"><i class="fa fa-mail-reply-all" style="margin-right:1%;font-size:11px;"></i></button>')
 	   $("#crossAndBack").append(backButton);
+	// $('#CheckMandatoryFieldsForExtendDates').hide();
 	}
 	}
 	

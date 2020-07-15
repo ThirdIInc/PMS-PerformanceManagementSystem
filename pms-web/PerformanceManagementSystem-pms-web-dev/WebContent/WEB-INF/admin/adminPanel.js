@@ -1047,7 +1047,7 @@ function createNewCycleAjax(){
 					 showAdminDashboard();
 					 showToster('info !', " Start sending emails", 5, "success");
 					 clearCycleForm();
-					 // sendEmailToAll(); // TODO mail send to all at the
+					 sendEmailToAll(); // TODO mail send to all at the
 						// time of cycle creation.
 			} else {
 				showToster('Error !',"Oops ! Something went wrong.", 5, "error");

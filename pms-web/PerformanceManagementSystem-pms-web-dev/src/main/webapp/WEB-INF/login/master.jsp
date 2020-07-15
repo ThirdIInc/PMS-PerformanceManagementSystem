@@ -153,13 +153,13 @@ background-color: white; /* Green */
 					<span class="col-sm-12" style="margin-top:1%;"></span>
 					<span class="col-sm-12" style="margin-top:1%;font-weight:600"></span>
 				</div> -->
-			<div style="width: 157%;">
-				<div class="col-sm-3" style="width: 20%;">
+			<div style="width: 100%;">
+				<div class="col-sm-3" style="width: 32%;">
 					<span class="col-sm-12 selfAssess"
 						style="margin-top: 1%; color: #9A9A9A; font-family:" NunitoSans";">
 						Self Assessment </span> <span id="selfAssessmentED" class="col-sm-12"></span>
 				</div>
-				<!-- <div class="col-sm-3" style="width: 20%";>
+			<!-- <div class="col-sm-3" style="width: 20%";>
 					<span class="col-sm-12 apprAssess"
 						style="margin-top: 1%; color: #9A9A9A; font-family:" NunitoSans";">Appraiser
 						Assessment</span> <span id="apprAssessmentED" class="col-sm-12">
@@ -169,19 +169,19 @@ background-color: white; /* Green */
 					<span class="col-sm-12 revAssess"
 						style="margin-top: 1%; color: #9A9A9A; font-family:" NunitoSans";">Reviewer
 						Assessment</span> <span id="revAssessmentED" class="col-sm-12"></span>
-				</div>
- -->			</div>
+				</div> -->
+		</div>
 			<div class="col-sm-12">
 				<span><br></span>
 			</div>
-			<!-- <div class='col-sm-12' style="margin-left: 1%">
+		<!--  <div class='col-sm-12' style="margin-left: 1%">
 				<span id="ball1" class="col-sm-1 balldot"></span>
 				<hr id="line1" class="col-sm-3">
 				<span id="ball2" class="col-sm-1 balldot"></span>
 				<hr id="line2" class="col-sm-3">
 				<span id="ball3" class="col-sm-1 balldot"></span>
 				<hr id="line3" class="col-sm-3">
-			</div> -->
+			</div>  -->
 			<div class="col-sm-12" id="headerOfFullContentDiv"
 				style="padding-top: 1%; padding-bottom: 0.5%;"></div>
 			<div class="col-sm-12" id="fullContentDiv" style="margin-bottom: 5%;"></div>
@@ -244,6 +244,18 @@ background-color: white; /* Green */
 								</div>
 								<div class="col-sm-10">
 									<label style="width:100%;float:none;font-size:14px; font-weight:600;cursor:pointer" onclick="CycleNameCheck();">Create Cycle</label>
+									<label style="width:100%;float:none;font-size:12px; font-weight:500;color:#999999;cursor:pointer">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</label>
+								</div>
+								<div class="col-sm-1" style="text-align:right;padding:1% 0 1% 0;">
+									 <i class="fa fa-arrow-right fa-2x" style="color:#18A689;cursor:pointer"></i>
+								</div>
+						</div>
+						<div class="col-sm-12" id="updateDates" onclick="extendDates()" style="cursor:pointer;padding-top:1%;padding-bottom:2%;border-bottom:1px solid #eeeeee;background:white">
+								<div class="col-sm-1" style="width:5% !important;cursor:pointer">
+									<i class="fa fa-plus fa-2x" style="color:#18A689;"></i>
+								</div>
+								<div class="col-sm-10">
+									<label style="width:100%;float:none;font-size:14px; font-weight:600;cursor:pointer">Extend Dates</label>
 									<label style="width:100%;float:none;font-size:12px; font-weight:500;color:#999999;cursor:pointer">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</label>
 								</div>
 								<div class="col-sm-1" style="text-align:right;padding:1% 0 1% 0;">
@@ -362,7 +374,8 @@ background-color: white; /* Green */
 				                      		<label class="label label-success" style="margin-right:2%;background-color:#18A689">2</label>
 				                      		Set duration of appraisal cycle
 				                      	</label>
-				                      	 <i class="fa fa-refresh" id =clearDates style="margin-left: -401px;" aria-hidden="true"  onclick="ClearDates();"></i>
+				                      		 <i class="fa fa-refresh" id =clearDates style="margin-left: -401px;" aria-hidden="true"  onclick="ClearDates();"></i>
+				                      	
 				                      </a>
 				                      <div class="ibox-tools col-sm-2 pull-right" style="text-align:right;">
 				                          <a class="collapse-link" href="">
@@ -482,9 +495,116 @@ background-color: white; /* Green */
 								<button  id="CheckMandatoryFields" class="btn btn-outline-green btn-success" style="border-radius:0px !important;margin-left:1%;padding-left:2%;padding-right:2%;">Create</button>
 							</div>
 				</div>
+				
+<!------------------------------------------------------------- Extend Dates for Cycle --------------------------------------------------------------->				
+					
+				
+				
+				
+					<div id="extendDates" class="row" style="display:none;margin-bottom:1%;">
+					<div class="col-sm-12" style="border:1px soild #EEEEEEE;margin-top:3px;background:white;">
+						 <label style="width:90%;padding:1% 0 1% 0%;font-size:18px;"><i class="fa fa-plus" style="padding-left:0%;margin-right:1%;color:#18A689;"></i> Extend Cycle</label>
+					</div>
+					<div class="col-sm-12" style="padding:0.5% 0 0% 0;">
+						     
+				                  <div class="ibox-content" style="">
+										  <div class="form-group">
+												<label class="font-normal">Set End Date :</label>
+												<div data-date="" data-date-format="dd-mm-yyyy" id="extend_cycle_enddate"   class="input-group date">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+													<input type="text" readonly placeholder="DD-MM-YYYY" name="extendCycleEndDate" id="extendCycleEndDate" size="16" class="form-control" style="width:20%;" required> 
+												</div>
+										  </div>
+				                  </div>
+				                </div> 
+				                <div class="ibox">  
+				                  <div class="ibox-title">
+				                      <a class="collapse-link" href="" style="color:#000 !important;">
+				                      	<label style="width:50%;">
+				                      		<label class="label label-success" style="margin-right:2%;background-color:#18A689">3</label> 
+				                      		Set duration for self assessment	
+				                      	</label>
+				                      	 <i class="fa fa-refresh" id ="clearExtendedDates" style="margin-left: -401px;" aria-hidden="true"  onclick="ClearExtendedDates();"></i>
+				                      </a>
+				                      <div class="ibox-tools col-sm-2 pull-right" style="text-align:right;">
+				                          <a class="collapse-link" href="">
+				                              <i class="fa fa-chevron-up"></i>
+				                          </a>
+				                      </div>
+				                  </div>
+				                  <div class="ibox-content" style="">
+				                         
+										  <div class="form-group">
+												<label class="font-normal">Set end date for self assessment:</label>
+												<div data-date="" data-date-format="dd-mm-yyyy" id="extend_self_ap_enddate" class="input-group date">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+													<input type="text" readonly placeholder="DD-MM-YYYY" name="extendSelfApprEndDate" id="extendSelfApprEndDate" size="16" class="form-control" style="width:20%;" required> 
+												</div>
+										  </div>
+				                  </div>
+				               </div>
+				               <div class="ibox">   
+				                  <div class="ibox-title">
+				                      <a class="collapse-link" href="" style="color:#000 !important;"><label style="width:50%;"><label class="label label-success" style="margin-right:2%;background-color:#18A689">4</label> Set duration for appraiser assessment</label>
+				                      </a>
+				                      <div class="ibox-tools col-sm-2 pull-right" style="text-align:right;">
+				                          <a class="collapse-link" href="">
+				                              <i class="fa fa-chevron-up"></i>
+				                          </a>
+				                      </div>
+				                  </div>
+				                  <div class="ibox-content" style="">
+				                          
+										  <div class="form-group">
+												<label class="font-normal">Set end date for appraiser assessment:</label>
+												<div data-date="" data-date-format="dd-mm-yyyy" id="extend_mng_ap_enddate" class="input-group date">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+													<input type="text" readonly placeholder="DD-MM-YYYY" name="extendMngApprEndDate" id="extendMngApprEndDate" size="16" class="form-control" style="width:20%;" required> 
+												</div>
+										  </div>
+				                  </div>
+				               </div>  
+				               <div class="ibox"> 
+				                  <div class="ibox-title">
+				                      <a class="collapse-link" style="color:#000 !important;">
+				                      	<label style="width:50%;">
+				                      		<label class="label label-success" style="margin-right:2%;background-color:#18A689;">5</label>
+				                      		 Set duration of reviewer assessment
+				                        </label>
+				                      </a>
+				                      <div class="ibox-tools col-sm-2 pull-right" style="text-align:right;">
+				                          <a class="collapse-link">
+				                              <i class="fa fa-chevron-up"></i>
+				                          </a>
+				                      </div>
+				                  </div>
+				                  <div class="ibox-content" style="">
+				                        
+										  <div class="form-group">
+												<label class="font-normal">Set end date for reviewer assessment:</label>
+												<div data-date="" data-date-format="dd-mm-yyyy" id="extend_rev_ap_enddate" class="input-group date">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+													<input type="text" readonly placeholder="DD-MM-YYYY" name="extendRevApprEndDate" id="extendRevApprEndDate" size="16" class="form-control" style="width:20%;" required> 
+												</div>
+										  </div>
+				                  </div>
+				                </div>  
+							</div>
+							<div class="row">
+								<button  onclick="extendDatesValidations();"  id ="CheckMandatoryFieldsForExtendDates" class="btn btn-outline-green btn-success" style="border-radius:0px !important;margin-left:1%;padding-left:2%;padding-right:2%;">Extend Dates</button>
+							</div>
+							
+				</div>
 				<div class="row" id="adminDashboardContentArea" style="background:#fff;margin-top:3px;display:none;padding-top:1%;padding-bottom:1%;"></div>
+   
+   
+   
+            
+
 		</div>
 </div>
+
+
 
 <!------------------------------------------------------------- Admin panel view ends --------------------------------------------------------------->
 
@@ -705,7 +825,9 @@ background-color: white; /* Green */
 
 <!-------------------------------------------------Email box ends --------------------------------------------------------->
 
-
+				
+				
+					
 <!------------------------------------------------------------- strength and weakness modal box starts------------------------------------------->
 
 <!-- confirm box starts here -->
@@ -734,6 +856,7 @@ var sendMailToAppraiserURL = '<c:url value="/competency/sendmailtoappr.do"/>';
 var getreviewerfinalratingURL = '<c:url value="/competency/getreviewerfinalrating.do"/>';
 var getSameApprRevDataURL = '<c:url value="/competency/getSameApprRevData.do"/>';
 var generateExportedDataURL = '<c:url value="/admin/dataExport.do"/>';
+var updateCycleURL = '<c:url value="/admin/updatecycle.do"/>';
 
 var user = ${user};
 
@@ -758,31 +881,20 @@ $(document).ready(function(event){
 });
 
 function initializeDatePickers(){
-	/* $("#cycle_startdate").datepicker().on("changeDate", function(ev) {
-		$("#cycle_startdate").datepicker('hide');
+	/*  $("#extend_cycle_enddate").datepicker().on("changeDate", function(ev) {
+		$("#extend_cycle_enddate").datepicker('hide');
 	});
-	$("#cycle_enddate").datepicker().on("changeDate", function(ev) {
-			$("#cycle_enddate").datepicker('hide');
+	$("#extend_self_ap_enddate").datepicker().on("changeDate", function(ev) {
+			$("#extend_self_ap_enddate").datepicker('hide');
 	});
-	$("#self_ap_startdate").datepicker().on("changeDate", function(ev) {
-		$("#self_ap_startdate").datepicker('hide');
+	$("#extend_mng_ap_enddate").datepicker().on("changeDate", function(ev) {
+		$("#extend_mng_ap_enddate").datepicker('hide');
 	});
-	$("#self_ap_enddate").datepicker().on("changeDate", function(ev) {
-			$("#self_ap_enddate").datepicker('hide');
-	});
-	$("#mng_ap_startdate").datepicker().on("changeDate", function(ev) {
-		$("#mng_ap_startdate").datepicker('hide');
-	});
-	$("#mng_ap_enddate").datepicker().on("changeDate", function(ev) {
-		$("#mng_ap_enddate").datepicker('hide');
-	});
-	$("#rev_ap_startdate").datepicker().on("changeDate", function(ev) {
-		$("#rev_ap_startdate").datepicker('hide');
-	});
-	$("#rev_ap_enddate").datepicker().on("changeDate", function(ev) {
-		$("#rev_ap_enddate").datepicker('hide');
-	});
- */}
+	$("#extend_rev_ap_enddate").datepicker().on("changeDate", function(ev) {
+			$("#extend_rev_ap_enddate").datepicker('hide');
+	}); */
+	
+ }
 
 function setUserName(){
 		var username = (user.username).split('.')[0];
@@ -906,18 +1018,26 @@ function showAdminDashboard(){
 			 $('#userDashboard').hide();
 			 $('#adminDashboardContentArea').hide();
 			 $('#adminDashboardContentArea').html();
+			 $('#adminDashboardContentArea1').hide();
+			 $('#adminDashboardContentArea1').html();
+			 $('#CheckMandatoryFieldsForExtendDates').hide();
+			 
 				
 		 }
 		 else if(userrole=="admin"){
 			 $('#adminDashboard').show();
 			 $('#userDashboard').hide();
 			 $('#createNewCycle').hide();
+			 $('#updateDates').hide();
 			 $('#showEmployeeProgressView').hide();
 			 $('#generateEmployeeMetricSheet').show();
 			 $('#mapEmployeeWithReviewerView').hide();
 			 $('#mapHRAdminForReviewerLevel2View').hide();
 			 $('#adminDashboardContentArea').hide();
 			 $('#adminDashboardContentArea').html();
+			 $('#adminDashboardContentArea1').hide();
+			 $('#adminDashboardContentArea1').html();
+			 $('#CheckMandatoryFieldsForExtendDates').hide();
 			 
 		 }
 		 
@@ -939,20 +1059,22 @@ function showUserDashboard(){
 }
 
 function setCycleDatesOnHeader(){
-	$('#selfAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.selfApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.selfApprEndDate).format(' DD-MMM-YY')+'<span>');
+	$('#selfAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.selfApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.selfApprEndDate).format(' DD-MMM-YYYY')+'<span>');
 	
-	$('#apprAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.mngApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.mngApprEndDate).format(' DD-MMM-YY')+'<span>');
+	$('#apprAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.mngApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.mngApprEndDate).format(' DD-MMM-YYYY')+'<span>');
 	
-	$('#revAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.revApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.revApprEndDate).format(' DD-MMM-YY')+'<span>');
+	$('#revAssessmentED').html('<span style="height: 23px;	width: 153px;color: #4A4A4A;font-family:Nunito Sans;font-size: 16px;	font-weight: bold;line-height: 23px;">'+ moment(apprCycle.revApprStartDate).format('DD-MMM ')+'<span>To</span>'+moment(apprCycle.revApprEndDate).format(' DD-MMM-YYYY')+'<span>');
 }
 
 function checkBackButton(){
 	if($("#actionContainer").css('display')=="block"){
 	$("#crossAndBack").children()[1].remove()
+	$('#CheckMandatoryFieldsForExtendDates').hide();
 	}
 	else{
 	var backButton = $('<button onclick="backToDashboard();" class="btn btn-circle btn-close pull-right" style="margin-left:1%;" data-toggle="tooltip" data-placement="bottom" title="Back"><i class="fa fa-mail-reply-all" style="margin-right:1%;font-size:11px;"></i></button>')
 	   $("#crossAndBack").append(backButton);
+	// $('#CheckMandatoryFieldsForExtendDates').hide();
 	}
 	}
 	
@@ -986,6 +1108,7 @@ function setCycleLablerOnHeader(){
 }
 
 
+
  document.getElementById('CheckMandatoryFields').onclick = function() {
 	if((!mandatoryField(cycle_title, "Cycle Title"))||(!mandatoryField(cycleStartDate, "Cycle Start Date")) ||(!mandatoryField(cycleEndDate, "Cycle End Date"))||(!mandatoryField(selfApprStartDate, "Self Start Date"))||(!mandatoryField(selfApprEndDate, "Self End Date"))||(!mandatoryField(mngApprStartDate, "Appraiser Start Date"))||(!mandatoryField(mngApprEndDate, "Appraiser End Date"))||(!mandatoryField(revApprStartDate, "Reviewer Start Date"))||(!mandatoryField(revApprEndDate, "Reviewer End Date"))){
 	return false;
@@ -1003,9 +1126,38 @@ function setCycleLablerOnHeader(){
 $(function() {
 	    $("a#print").click(nWin);
 });
- 
-</script>
 
-  
+function extendDatesValidations() {
+	debugger;
+	var cycleEndDate = $('#extendCycleEndDate').val();
+	var selfEndDate = $('#extendSelfApprEndDate').val();
+	var apprEndDate = $('#extendMngApprEndDate').val();
+	var revEndDate = $('#extendRevApprEndDate').val();
+	if(selfEndDate>cycleEndDate){
+		showToster('Warning !',  selfEndDate + " should be less than " + cycleEndDate, 5, "warning");
+	}
+	else if(apprEndDate>cycleEndDate){
+		showToster('Warning !',apprEndDate + " should be less than " + cycleEndDate, 5, "warning");
+	}
+	else if(revEndDate>cycleEndDate){
+		showToster('Warning !', revEndDate + " should be less than " + cycleEndDate, 5, "warning");
+	}
+	else if(selfEndDate>apprEndDate){
+		showToster('Warning !', selfEndDate + " should be less than " + apprEndDate, 5, "warning");
+	}
+	else if(selfEndDate>revEndDate){
+		showToster('Warning !', selfEndDate + " should be less than " + revEndDate, 5, "warning");
+	}
+	else if(apprEndDate>revEndDate){
+		showToster('Warning !', apprEndDate + " should be less than " + revEndDate, 5, "warning");
+	}
+	else {
+		updateCycleAjax();
+    }
+}
+/* document.getElementById('CheckMandatoryFieldsForExtendDates').onclick = function() {
+		updateCycleAjax();
+} */
+</script>
 </body>
 </html>

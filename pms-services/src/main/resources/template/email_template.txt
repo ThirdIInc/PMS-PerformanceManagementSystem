@@ -20,21 +20,25 @@ td {
 
     <p>Hello Everyone,</p>
     
-    <p>Please note that we are initiating the Performance Review Cycle- October 2019. Kindly complete your Self Assessment latest by<b> ${selfAssessmentEndDate}</b></p>
+    <p>Please note that we are initiating the Performance Review Cycle- April 2020. Kindly complete your Self Assessment latest by<b> ${selfAssessmentEndDate}.</b></p>
     
     <p>Click on this <a href="http://172.16.17.78:8080/pms"> link </a>to complete your self assessment. Provide sufficient instances/ data to support your deliverables and achievements.</p>
     
 
    Following are certain attachments/ videos which will help you with the process : (videos are supported by VLC )
     <br><br>
-	1. <a href="https://drive.google.com/open?id=1qvN2IcEXebOPYH5SWpPVQAoNCJ2CoI08">PMS user manual</a><br>
+	1. <a href="https://drive.google.com/open?id=1qvN2IcEXebOPYH5SWpPVQAoNCJ2CoI08">PMS User Manual</a><br>
     2. <a href="https://drive.google.com/open?id=1VduoKBTtD0j_ZhlINI-sZJResATP7S6l">Self-Assessment Video</a> <br>
-    3. <a href="https://drive.google.com/open?id=11DV9sNgNEt-_WyljMlOE-XQ1S1OGNHF2">Appraiser-Assessment Video</a>
-    
+    3. <a href="https://drive.google.com/open?id=11DV9sNgNEt-_WyljMlOE-XQ1S1OGNHF2">Appraiser-Assessment Video</a><br>
+	4. <a href="https://drive.google.com/file/d/11QuSwISMmJGIxCU2b-nM6dn74ZPnaa5E/view?usp=sharing">Steps to connect Forticlient Remotely</a>
+	
     <br>
-   <p> Please feel free to reach out @<a href="https://mail.google.com/mail/?view=cm&fs=1&to=pms.support@the3i.com">PMS-Support team. </a>for any further assistance</p>
-    <br>
+   <p> Please feel free to reach out @<a href="https://mail.google.com/mail/?view=cm&fs=1&to=pms.support@the3i.com">India_PMS.Support@aarete.com </a>for any further assistance</p>
+  
+   <p> P.S. The Associates who are working remotely or are working from home need to complete the assessment by logging to Third I VPN through Forticlient. This application is already installed on your machine.</p>
     
+	<p><b>Note : </b>Please don't forget to click on <b>"Save as Draft"</b> every time you fill the sections under your competencies, this will help to save your data.</p>
+	 
     Best Regards,<br>
     PMS Team<br>
     

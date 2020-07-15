@@ -54,8 +54,8 @@ public class EmailMessageServiceImpl implements EmailMessageService {
 					MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 					mimeMessageHelper.setSubject(mail.getSubject());
 					mimeMessageHelper.setFrom(prop.getProperty("mail.user"));
-					mimeMessageHelper.setTo(recipient.getEmail());
-					//mimeMessageHelper.setTo("ppatil@aarete.com");
+					mimeMessageHelper.setTo("ppatil@aarete.com");
+					//mimeMessageHelper.setTo(recipient.getEmail());
 					mail.setMailContent(geContentFromTemplate(prepareParameterMap()));
 					mimeMessageHelper.setText(mail.getMailContent(), true);
 					mailSender.send(mimeMessageHelper.getMimeMessage());

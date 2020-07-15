@@ -8,6 +8,7 @@ function prepareAdminPanelCache(){
 	var cache = {
 		 empProgressMap : {},
 		 cycleDataMap : null,
+		 extendedCycleDataMap : null,
 		 metricSheetDataMap : {},
 		 metricSheetRevApprMap : {},
 		 revScoreFromMetricSheetMap : null,
@@ -21,6 +22,14 @@ function prepareAdminPanelCache(){
 				if(cachedDataMap == undefined && cachedDataMap == null){
 					cache.cycleDataMap = new Map();
 					return cache.cycleDataMap;
+				}
+				return cachedDataMap;
+		 },
+		 getUpdateCycleDataMap : function(){
+			 var cachedDataMap = cache.extendedCycleDataMap;
+				if(cachedDataMap == undefined && cachedDataMap == null){
+					cache.extendedCycleDataMap = new Map();
+					return cache.extendedCycleDataMap;
 				}
 				return cachedDataMap;
 		 },
@@ -121,9 +130,26 @@ function createNewCycle(){
 	$('#adminDashboardContentArea').html();
 	$('#actionContainer').hide();
 	$('#createNewCycelContainer').show();
+	$('#extendDates').hide();
+	$('#CheckMandatoryFieldsForExtendDates').hide();
 	cycleDatesValidations();
 	checkBackButton();
 }
+
+function extendDates(){
+	$('#adminDashboardContentArea').hide();
+	$('#adminDashboardContentArea').html();
+	$('#actionContainer').hide();
+	$('#extendDates').show();
+	$('#CheckMandatoryFieldsForExtendDates').show();
+	cycleDatesValidationsForExtendDates();
+	checkBackButton();
+	$("#extendCycleEndDate:text").val(apprCycle.endate);
+	$("#extendSelfApprEndDate:text").val(apprCycle.selfApprEndDate);
+	$("#extendMngApprEndDate:text").val(apprCycle.mngApprEndDate);
+	$("#extendRevApprEndDate:text").val(apprCycle.revApprEndDate);
+}
+
 
 function emptyAllFieldsOfCreateCycle(){
 	$('#cycle_title').val('');
@@ -146,6 +172,15 @@ function setCycleDetailsInHeaders(){
 
 
 
+function getDataOfExtendedCycle(){
+	var extendedCycleDataMap = adminCache.getUpdateCycleDataMap();
+	extendedCycleDataMap.set("cycle_extend_ed",$('#extendCycleEndDate').val());
+	extendedCycleDataMap.set("self_extend_ed",$('#extendSelfApprEndDate').val());
+	extendedCycleDataMap.set("appr_extend_ed",$('#extendMngApprEndDate').val());
+	extendedCycleDataMap.set("rev_extend_ed",$('#extendRevApprEndDate').val());
+	return extendedCycleDataMap;
+}
+
 function getDataOfNewCycle(){
 	var cycleDataMap = adminCache.getCreateCycleDataMap();
 	cycleDataMap.set("title",$('#cycle_title').val());
@@ -164,6 +199,7 @@ function backToDashboard(){
 	$('#adminDashboardContentArea').html('');
 	$('#actionContainer').show();
 	$('#createNewCycelContainer').hide();
+	$('#extendDates').hide();
 	checkBackButton();
 }
 
@@ -274,7 +310,6 @@ function showEmployeeProgressView(){
 	}
 
 function prepareBodyOfEmployeeProgress(){
-	
 	var progressDataMap = adminCache.getEmpProgressDataMap();
 	var tbody = $('<tbody>');
 	if(progressDataMap != undefined && progressDataMap != null && !jQuery.isEmptyObject(progressDataMap)){
@@ -422,6 +457,7 @@ function prepareBodyOfEmployeeMetricSheet(){
 }
 
 function exportdata(){
+	debugger;
 	$('#adminDashboardContentArea').show();
 	$('#adminDashboardContentArea').html('');
 	$('#actionContainer').hide();
@@ -435,7 +471,7 @@ function exportdata(){
 	var table = $('<table class="table" id="exportTableId">');
 	var thead = $('<thead>');
 	var tr = $('<tr>');
-    var no = $('<th style="text-align:left;">').html('#');
+    var no = $('<th style="text-align:left;">').html('Employee Id');
     var employeeName = $('<th style="text-align:left;">').html('Employee Name');
     var DesignationName = $('<th style="text-align:left;width: 110px;">').html('Designation');
     var StatusName = $('<th style="text-align:left;width: 262px;">').html('Status');
@@ -466,7 +502,7 @@ function exportdata(){
 
 
 function prepareBodyOfExportDataSheet(){
-	
+	debugger;
 	var revId = user.empid;
 	var cycleId = apprCycle.cycleId;
 	var exportDataMap = adminCache.getExporteddataMap();
@@ -476,9 +512,10 @@ function prepareBodyOfExportDataSheet(){
 		for(var empId in exportDataMap){
 			var tr = $('<tr>');
 			var empDataJson = exportDataMap[empId];
-			var noLabel = $('<label class="label label-success" style="background:#18A689;">').html(count);
+			var noLabel = $('<label class="label label-success" style="background:#18A689;">').html(empDataJson["employeeId"]);
 			var noTd = $('<td style="text-align:left;">').append(noLabel);
 			var empNameTd = $('<td style="text-align:left;">').html(empDataJson["employeeName"]);
+			//var empTd = $('<td style="text-align:center;">').html(empDataJson["empId"]);
 			var designationNameId = $('<td style="text-align:left;">').html(empDataJson["designationName"]);
 			var apprStatus = empDataJson["status"];
 			var apprStatusTd = $('<td style="text-align:center;">');
@@ -1010,7 +1047,51 @@ function createNewCycleAjax(){
 					 showAdminDashboard();
 					 showToster('info !', " Start sending emails", 5, "success");
 					 clearCycleForm();
-					 //sendEmailToAll();   // TODO mail send to all at the time of cycle creation.
+					 sendEmailToAll(); // TODO mail send to all at the
+						// time of cycle creation.
+			} else {
+				showToster('Error !',"Oops ! Something went wrong.", 5, "error");
+				console.log('Error Cause :' + res.errorMessage);
+			}
+		}
+	});
+	return res;
+}
+
+function updateCycleAjax(){
+	var res = null;
+	var extendedCycleDataMap = getDataOfExtendedCycle();
+	var map = JSON.stringify([...extendedCycleDataMap]);
+	var cycleId = apprCycle.cycleId;
+	$.ajax({
+		type : "POST",
+		url : updateCycleURL,
+		async : false,
+		data : {
+			extendedCycleDataMap : map,
+			cycleId : cycleId
+			
+ 		},
+		beforeSend : function() {
+			$("body").showLoading();
+		},
+		complete : function() { 
+			$("body").hideLoading();
+		},
+		error : function(response, error, thrownError) {
+			displayError(response, error, thrownError);
+		},
+		success : function success(response) {
+			res = eval(response);
+			if (res.status) {
+					 showToster('Success !', " Dates Extended Successfully!", 5, "success");
+					 data = eval(res);
+					 apprCycle = data.runningCycel; 
+					 totalCycles = data.totalCycles;
+					 showAdminDashboard();
+					 // showToster('info !', " Start sending emails", 5,
+						// "success");
+					 ClearExtendedDatesForm();
 			} else {
 				showToster('Error !',"Oops ! Something went wrong.", 5, "error");
 				console.log('Error Cause :' + res.errorMessage);
@@ -1356,6 +1437,7 @@ function fetchCheckedEmpListFromViewPogress(checks){
  * AJAX
  * *************************************************************************************
  */
+
 function cycleDatesValidations() {
 	
 	var date = new Date();
@@ -1461,6 +1543,61 @@ function cycleDatesValidations() {
 }
 
 
+function cycleDatesValidationsForExtendDates() {
+	
+	var date = new Date();
+	var startDate = new Date();
+	var endDate=new Date();
+	date.setDate(date.getDate());
+	
+	$('#extendCycleEndDate').datepicker({
+		autoclose : true,
+		todayHighlight : true,
+		format : 'yyyy-mm-dd',
+		startDate : date	
+	}).on('changeDate', function(){
+		var temp = $(this).datepicker('getDate');
+		var d = new Date(temp);
+		d.setDate(d.getDate()+1);
+	});	
+	$('#extendSelfApprEndDate').datepicker({
+		autoclose : true,
+		todayHighlight : true,
+		format : 'yyyy-mm-dd',
+		startDate : date,
+	}).on('changeDate', function(){
+		var temp = $(this).datepicker('getDate');
+		var d = new Date(temp);
+		d.setDate(d.getDate()+1);
+
+	});	
+	
+	$('#extendMngApprEndDate').datepicker({
+		autoclose : true,
+		todayHighlight : true,
+		format : 'yyyy-mm-dd',
+		startDate : date,
+	}).on('changeDate', function(){
+		var temp = $(this).datepicker('getDate');
+		var d = new Date(temp);
+		d.setDate(d.getDate()+1);
+
+	});	
+	$('#extendRevApprEndDate').datepicker({
+		autoclose : true,
+		todayHighlight : true,
+		format : 'yyyy-mm-dd',
+		startDate : date,
+	}).on('changeDate', function(){
+		var temp = $(this).datepicker('getDate');
+		var d = new Date(temp);
+		d.setDate(d.getDate()+1);
+
+	});	
+	
+}
+
+
 
 function mandatoryField(fieldObject, fieldName) {
 	if ("" == fieldObject.value) {
@@ -1480,10 +1617,7 @@ function clearCycleForm() {
 	$("#mngApprEndDate").val("");
 	$("#revApprStartDate").val("");
 	$("#revApprEndDate").val("");
-
-	
 }
-
 function ClearDates() {
 	$('#cycleStartDate').val('').datepicker('remove');
 	$('#cycleEndDate').val('').datepicker('remove');
@@ -1494,6 +1628,23 @@ function ClearDates() {
 	$('#revApprStartDate').val('').datepicker('remove');
 	$('#revApprEndDate').val('').datepicker('remove');
 	cycleDatesValidations(); 
+	}
+
+
+function ClearExtendedDates() {
+	$('#extendCycleEndDate').val('').datepicker('remove');
+	$('#extendSelfApprEndDate').val('').datepicker('remove');
+	$('#extendMngApprEndDate').val('').datepicker('remove');
+	$('#extendRevApprEndDate').val('').datepicker('remove');
+	cycleDatesValidationsForExtendDates(); 
+	}
+
+function ClearExtendedDatesForm() {
+	$('#extendCycleEndDate').val('').datepicker('remove');
+	$('#extendSelfApprEndDate').val('').datepicker('remove');
+	$('#extendMngApprEndDate').val('').datepicker('remove');
+	$('#extendRevApprEndDate').val('').datepicker('remove');
+	cycleDatesValidationsForExtendDates(); 
 	}
 
 
