@@ -120,7 +120,7 @@
 		<dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client</artifactId>
-			<version>1.15.0-rc</version>
+			<version>1.32.1</version>
 		</dependency>
 		
 		<!-- Spring Security -->
